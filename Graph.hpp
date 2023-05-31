@@ -21,12 +21,12 @@ public:
     friend std::ostream& operator<<(std::ostream& out,const Graph &g);    
 
     
-    
+    std::set<int> nodeSet;
 private:
     int nodeCount;
     int edgeCount;
     std::vector<std::vector<int>> adjacencyMatrix;
-    std::set<int> nodeSet;
+    
     
    
 };
