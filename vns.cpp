@@ -30,13 +30,7 @@ float fit(Graph &g,std::set<int> &potential_clique){
     
     int ukupno=n*(n-1)/2;
     int br=0;
-    //  for(auto v:potential_clique){
-    //      for(auto u:potential_clique){
-    //          if(u!=v)
-    //          br+=adjMatrix[u][v];
-    //      }
-    //  }
-    // br/=2;
+
     for(auto it1=potential_clique.begin();it1!=potential_clique.end();it1++){
         auto it2=it1;
         ++it2;
@@ -191,9 +185,9 @@ int main() {
         if(dirEntry.path().extension() == ".mtx") {
             std::cout << "Loading graph " << dirEntry.path().stem() << " from file  -> " << std::flush;
             Graph g(dirEntry.path());
-            // std::cout << g << std::endl;
+            
             std::cout << "Done" << std::endl;
-         //   std::cout<<"MaxDegNode: "<<g.getMaxDegNode()<<std::endl;
+    
 			float sum=0;
             double time=0;
             int numOfIters=10;
