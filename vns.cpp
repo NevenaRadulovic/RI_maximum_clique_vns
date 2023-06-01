@@ -154,21 +154,10 @@ std::set<int> vns(Graph &g,std::uint32_t seed)
          n=best_solution.size();
         std::set<int> new_solution=best_solution;
         shaking(g,new_solution,k,gen);
-      //  std::cout<<num<<std::endl;
         --num;
-       // std::cout<<num<<std::endl;
+       
         LS(g,new_solution);
-      //  std::cout<<"LS"<<std::endl;
-        //local_search(g,new_solution,deletedNodes);
-        // ovde treba fit funkcija
-
-
-        /*
-        ako nije klika -br grana koji fali do klike
-        ako jeste klika - 1/br_cvorova_u_kliki
-        0.33
-        3 
-        */
+     
         if(fit(g,new_solution)<=fit(g,best_solution))
            {
                 best_solution=new_solution;
