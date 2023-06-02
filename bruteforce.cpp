@@ -1,8 +1,8 @@
-#include "Graph.hpp"
 #include <chrono>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include "Graph.hpp"
 
 using namespace std;
 
@@ -15,9 +15,7 @@ int d[MAX];
 int numOfIters = 0;
 
 // funckcija koja proverava da li je trenutni podskup klik velicine cliqueSize
-bool
-is_clique(Graph g, int cliqueSize)
-{
+bool is_clique(Graph g, int cliqueSize) {
   numOfIters++;
   std::vector<std::vector<int>> adjMatrix = g.getAdjacencyMatrix();
 
@@ -33,9 +31,7 @@ is_clique(Graph g, int cliqueSize)
   return true;
 }
 
-int
-maxCliquesBF(Graph g, int startNode, int newSize)
-{
+int maxCliquesBF(Graph g, int startNode, int newSize) {
   int maxClique = 0;
   int size = g.getNodeCount();
 
@@ -43,7 +39,6 @@ maxCliquesBF(Graph g, int startNode, int newSize)
   // prosimo podskup i da on i dalje bude klik
   // krecemo od cvora koji smo prosledili kao pocetni i proveramo sve dalje
   for (int newNode = startNode + 1; newNode <= size; newNode++) {
-
     store[newSize] = newNode;
 
     if (is_clique(g, newSize)) {
@@ -55,9 +50,7 @@ maxCliquesBF(Graph g, int startNode, int newSize)
   return maxClique;
 }
 
-int
-main()
-{
+int main() {
   std::filesystem::path dataPath("./data");
   for (const auto& dirEntry : std::filesystem::directory_iterator(dataPath)) {
     if (dirEntry.path().extension() == ".mtx") {

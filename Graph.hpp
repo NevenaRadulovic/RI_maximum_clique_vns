@@ -6,10 +6,8 @@
 #include <set>
 #include <vector>
 
-class Graph
-{
-
-public:
+class Graph {
+ public:
   Graph(std::filesystem::path filePath);
 
   int getNodeCount();
@@ -23,7 +21,7 @@ public:
 
   std::set<int> nodeSet;
 
-private:
+ private:
   int nodeCount;
   int edgeCount;
   std::vector<std::vector<int>> adjacencyMatrix;

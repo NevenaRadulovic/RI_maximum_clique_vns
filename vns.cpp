@@ -1,4 +1,3 @@
-#include "Graph.hpp"
 #include <algorithm>
 #include <cstdlib>
 #include <ctime>
@@ -8,11 +7,9 @@
 #include <random>
 #include <set>
 #include <vector>
+#include "Graph.hpp"
 
-bool
-is_clique(Graph& g, std::set<int>& clique)
-{
-
+bool is_clique(Graph& g, std::set<int>& clique) {
   std::vector<std::vector<int>> adjMatrix = g.getAdjacencyMatrix();
 
   for (int u : clique)
@@ -24,10 +21,7 @@ is_clique(Graph& g, std::set<int>& clique)
   return true;
 }
 
-float
-fit(Graph& g, std::set<int>& potential_clique)
-{
-
+float fit(Graph& g, std::set<int>& potential_clique) {
   std::vector<std::vector<int>> adjMatrix = g.getAdjacencyMatrix();
   int n = potential_clique.size();
 
@@ -49,9 +43,7 @@ fit(Graph& g, std::set<int>& potential_clique)
   else
     return (float)1 / n;
 }
-void
-LS(Graph& g, std::set<int>& s)
-{
+void LS(Graph& g, std::set<int>& s) {
   bool impr = true;
   float best_fit = fit(g, s);
   std::set<int> s_best = s;
@@ -59,13 +51,9 @@ LS(Graph& g, std::set<int>& s)
   std::set<int> s_new;
   while (impr) {
     impr = false;
-    std::set_difference(g.nodeSet.begin(),
-                        g.nodeSet.end(),
-                        s.begin(),
-                        s.end(),
+    std::set_difference(g.nodeSet.begin(), g.nodeSet.end(), s.begin(), s.end(),
                         std::inserter(free_nodes, free_nodes.begin()));
     for (auto x : s) {
-
       for (auto y : free_nodes) {
         s_new = s;
         s_new.erase(x);
@@ -84,14 +72,9 @@ LS(Graph& g, std::set<int>& s)
   }
 }
 
-void
-shaking(Graph& g, std::set<int>& cur_solution, int k, std::mt19937& gen)
-{
-
+void shaking(Graph& g, std::set<int>& cur_solution, int k, std::mt19937& gen) {
   std::set<int> free_nodes;
-  std::set_difference(g.nodeSet.begin(),
-                      g.nodeSet.end(),
-                      cur_solution.begin(),
+  std::set_difference(g.nodeSet.begin(), g.nodeSet.end(), cur_solution.begin(),
                       cur_solution.end(),
                       std::inserter(free_nodes, free_nodes.begin()));
   while (k > 0) {
@@ -122,10 +105,7 @@ shaking(Graph& g, std::set<int>& cur_solution, int k, std::mt19937& gen)
   cur_solution.emplace(*it2);
 }
 
-std::set<int>
-vns(Graph& g, std::uint32_t seed)
-{
-
+std::set<int> vns(Graph& g, std::uint32_t seed) {
   std::set<int> best_solution;
 
   std::mt19937 gen;
@@ -163,14 +143,10 @@ vns(Graph& g, std::uint32_t seed)
   return best_solution;
 }
 
-int
-main()
-{
-
-  std::vector<std::uint32_t> seeds = { 997637,     424653,     1856049002,
-                                       1129615051, 6460811,    10751511,
-                                       4678358,    3904109078, 1534123438,
-                                       1495905678 };
+int main() {
+  std::vector<std::uint32_t> seeds = {
+      997637,   424653,  1856049002, 1129615051, 6460811,
+      10751511, 4678358, 3904109078, 1534123438, 1495905678};
 
   std::filesystem::path dataPath("./data");
 
