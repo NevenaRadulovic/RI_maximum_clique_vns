@@ -1,34 +1,32 @@
 #ifndef __GRAPH__
 #define __GRAPH__
 
+#include <algorithm>
 #include <filesystem>
 #include <set>
 #include <vector>
-#include <algorithm>
 
-class Graph{
+class Graph
+{
 
 public:
-    Graph(std::filesystem::path filePath);
+  Graph(std::filesystem::path filePath);
 
-    int getNodeCount();
-    int getEdgeCount();
-    std::set<int> getNodeSet();
-    std::vector<std::vector<int>> getAdjacencyMatrix();
-    std::vector<int> getSortedNodes();
-    void addEdge(int node,int neighbor);
+  int getNodeCount();
+  int getEdgeCount();
+  std::set<int> getNodeSet();
+  std::vector<std::vector<int>> getAdjacencyMatrix();
+  std::vector<int> getSortedNodes();
+  void addEdge(int node, int neighbor);
 
-    friend std::ostream& operator<<(std::ostream& out,const Graph &g);    
+  friend std::ostream& operator<<(std::ostream& out, const Graph& g);
 
-    
-    std::set<int> nodeSet;
+  std::set<int> nodeSet;
+
 private:
-    int nodeCount;
-    int edgeCount;
-    std::vector<std::vector<int>> adjacencyMatrix;
-    
-    
-   
+  int nodeCount;
+  int edgeCount;
+  std::vector<std::vector<int>> adjacencyMatrix;
 };
 
 #endif
