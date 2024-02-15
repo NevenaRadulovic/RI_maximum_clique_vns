@@ -9,6 +9,7 @@
 #include <vector>
 #include "Graph.hpp"
 
+// Check if clique set contains clique
 bool is_clique(Graph& g, std::set<int>& clique)
 {
 	std::vector<std::vector<int>> adjMatrix = g.getAdjacencyMatrix();
