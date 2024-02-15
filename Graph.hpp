@@ -6,6 +6,8 @@
 #include <set>
 #include <vector>
 
+// Comment to test git-hook
+
 class Graph
 {
        public:
